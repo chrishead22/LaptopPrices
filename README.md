@@ -2,13 +2,38 @@
 
 <b>Laptop Prices</b>
 
-The purpose of this machine learning project is to create a linear regression model to help me decide what is the best laptop I am interested in buying based on my own personal criteria. My personal criteria is a laptop I can use to play games as well as develop software.
+The purpose of this machine learning project is to create a linear regression model to help me decide what is the best laptop I am interested in buying based on my own personal criteria. I am trying to predict the price against the features of the laptop.
 
 <u>Data Source:</u>
 
 - This data was downloaded directly from Kaggle, a public repository for learning data science and machine learning and included into this project locally as of 10/10/2024 in a .csv format.
 - Laptop Prices - https://www.kaggle.com/datasets/owm4096/laptop-prices
-- The features of the data includes several aspects and specifications for purchasing a laptop. Such as price, graphics, memory, processing power, etc. There are 1276 rows of information and 23 features for 26 kB of data. All for various types of laptop models and manufacturers. There are 14 categorical features and 9 numerical features.
+- The features of the data includes several aspects and specifications for purchasing a laptop. Such as price, graphics, memory, processing power, etc. There are 1,276 rows of information and 23 features for 26 kB of data. All for various types of laptop models and manufacturers. There are 14 categorical features and 9 numerical features.
+
+Features:
+- Company: Laptop Manufacturer.
+- Product: Brand and Model.
+- TypeName: Laptop Type (Notebook, Ultrabook, Gaming, …etc).
+- Inches: Screen Size.
+- Ram: Total amount of RAM in laptop (GBs).
+- OS: Operating System installed.
+- Weight: Laptop Weight in kilograms.
+- Price_euros: Price of Laptop in Euros. (Target)
+- Screen: screen definition (Standard, Full HD, 4K Ultra HD, Quad HD+).
+- ScreenW: screen width (pixels).
+- ScreenH: screen height (pixels).
+- Touchscreen: whether or not the laptop has a touchscreen.
+- IPSpanel: whether or not the laptop has an IPSpanel.
+- RetinaDisplay: whether or not the laptop has retina display.
+- CPU_company
+- CPU_freq: frequency of laptop CPU (Hz).
+- CPU_model
+- PrimaryStorage: primary storage space (GB).
+- PrimaryStorageType: primary storage type (HDD, SSD, Flash Storage, Hybrid).
+- SecondaryStorage: secondary storage space if any (GB).
+- SecondaryStorageType: secondary storage type (HDD, SSD, Hybrid, None).
+- GPU_company
+- GPU_model
 
 <u>Data Cleaning:</u>
 
@@ -23,7 +48,7 @@ The purpose of this machine learning project is to create a linear regression mo
 
 - Checking how many laptops actually have secondary data and very few have secondary storage so I will be removing this and the SecondaryStorageType feature as well.
 
-Inspecting the cleaned data, there are no missing values or garbage characters that need addressing. There were no unforseen issues preprocessing this data set. The goal of this data cleaning was to remove as many unnecessary features to help streamline the future models.
+Inspecting the cleaned data, there are no missing values or garbage characters that need addressing. There were no unforseen issues during preprocessing of this data set. There were no NANs or null values or any kind of garbage characters. The goal of this data cleaning was to remove as many unnecessary features to help streamline the models.
 
 <u>EDA:</u>
 
@@ -40,11 +65,13 @@ I would hypothesize that higher RAM, higher CPU frequency, and higher weight wou
 
 - Multi Linear Regression:  with a multi-linear regression model we can see using our top 3 features provides a value of 0 for the p-values, so our features are significant. We then can plot the leverage vs the residual to clean up more outliers. After removing several outliers we can see that our R-squared doesn't really change a lot, meaning the data is all over the place with these combined features. This makes sense as there are several different versions of laptops all with a combination of different components. This shows that this dataset is collinear and coorelated, as the weight, RAM, and CPU frequency become larger, the price becomes larger.
 
+- Decision Tree: using a decision tree classifier model for variety and this is definately not the right model choice. The accuracy is very very low. I suspect this is because this type of model is not good for this spread out and for data that is not underfitting or overfitting at all.
+
 - K-Fold Cross-Validation: we will divide the dataset into K (5) parts. Each time one part of the dataset is used as the test set while the remaining K-1 parts are used as the training set. We will use this model method not discussed in class to cross validate with our other regression models. Running the K-Fold cross validation on the data set broken into 5 subsets. We get an accuracy of roughly 42%. This checks out as the varying degree of data per each laptop averages out to being even.
 
 <u>Conclusion</u>
 
-I believe using a simple linear regression model is satisfactory for our goal of determining which laptop is best. The end results match our earlier hypothesis that larger numbers of RAM, weight, and CPU frequency leads to higher performing thus better for gaming laptops. Some ways I would improve this project would be to perhaps find a dataset of only gaming laptops to narrow down the search further.
+I believe using a simple linear regression model is satisfactory for our goal of determining which laptop is best. The end results match our earlier hypothesis that larger numbers of RAM, weight, and CPU frequency leads to higher performing thus better for gaming laptops. Some ways I would improve this project would be to perhaps find a dataset of only gaming laptops to narrow down the search further. There isn't a strong coorelation between features and the price. There is no over or underfitting, the range is too variable.
 
 Based on the regression plots the following specifications are ideal:
 - 16 GB RAM
